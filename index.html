@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlphaStocks AI-Home</title>
+    <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest">lucide.createIcons()</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -39,7 +40,7 @@
                 <ul id="suggestions" class="suggestions hidden"></ul>
             </div>
 
-            <div id="predictbutton" onclick="predict() ;display();"><b>Predict</b></div>
+            <div id="predictbutton" onclick="predict() ;display();loadNews();"><b>Predict</b></div>
 
         </div>
         <div class="pop">
@@ -135,7 +136,11 @@
     <section class="news">
         <div id="newsbox">
             <div id="newshead">          
-                NEWS
+               RECENT <u>NEWS</u> ABOUT <span id="symbolname"></span>
+               
+            </div>
+            <div class="newsitem" id="news">
+            
             </div>
         </div>
     </section>
