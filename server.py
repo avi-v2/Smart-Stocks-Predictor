@@ -5,6 +5,8 @@ import tensorflow as tf
 import yfinance as yf
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+import requests
+from flask import Flask, jsonify
 from pydantic import BaseModel
 import requests
 
