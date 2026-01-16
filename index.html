@@ -39,7 +39,7 @@
                 <ul id="suggestions" class="suggestions hidden"></ul>
             </div>
 
-            <div id="predictbutton" onclick="predict() ;display();"><b>Predict</b></div>
+            <div id="predictbutton" onclick="predict() ;display();loadNews();"><b>Predict</b></div>
 
         </div>
         <div class="pop">
@@ -135,7 +135,11 @@
     <section class="news">
         <div id="newsbox">
             <div id="newshead">          
-                NEWS
+               RECENT <u>NEWS</u> ABOUT <span id="symbolname"></span>
+               
+            </div>
+            <div class="newsitem" id="news">
+
             </div>
         </div>
     </section>

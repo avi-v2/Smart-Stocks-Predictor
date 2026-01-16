@@ -115,6 +115,7 @@ function predict() {
                     " | Predicted: $" + data.predicted_price.toFixed(3);
                 document.getElementById("predictionText").innerText="Result"
                 document.getElementById("predictionText").style="font-size: 1.2em;"
+                document.getElementById("symbolname").innerText=sym
                
             }
         })
@@ -122,6 +123,7 @@ function predict() {
             document.getElementById("result").innerText = "Server not running";
             
             document.getElementById("predictionText").innerText=""
+            document.getElementById("symbolname").innerText=sym
         });
 }
 
@@ -168,7 +170,7 @@ async function loadStockCSV(sym) {
     } catch (err) {
         console.error(err);
         document.getElementById("result").innerText =
-            "Historical data not available";
+            "Loading...";
     }
 }
 
@@ -201,3 +203,52 @@ btn.addEventListener("click", () => {
     btn.disabled = false;
   }, 3000);
 });
+
+
+
+
+const apiKey = "d5kv4bpr01qt47mfnse0d5kv4bpr01qt47mfnseg";
+
+const companyMap = {
+  google: "GOOGL",
+  GOOG: "GOOGL",
+  GOOGL: "GOOGL",
+  AAPL: "AAPL",
+  TSLA: "TSLA",
+  MSFT: "MSFT",
+  AMZN: "AMZN"
+};
+
+function loadNews() {
+  const input = document.getElementById("stockname").value;
+  const symbol = companyMap[input];
+
+  const newsDiv = document.getElementById("news");
+  newsDiv.innerHTML = " ";
+
+  if (!symbol) {
+    newsDiv.innerHTML = "<p>Company not supported</p>";
+    return;
+  }
+
+  const from = "2025-01-01";
+  const to = "2026-12-31";
+
+  fetch(
+    `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${from}&to=${to}&token=${apiKey}`
+  )
+    .then(res => res.json())
+    .then(data => {
+      data.slice(0, 5).forEach(n => {
+        const div = document.createElement("div");
+        div.className = "news-item";
+        div.innerHTML = `
+          <a href="${n.url}" target="_blank">${n.headline}</a>
+        `;
+        newsDiv.appendChild(div);
+      });
+    })
+    .catch(() => {
+      newsDiv.innerHTML = "<p>News service unavailable</p>";
+    });
+}

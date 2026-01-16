@@ -407,3 +407,9 @@ footer>div{
     padding-bottom: 7px;
     font-size: 1.2em;
 }
+
+.newsitem a{
+    color:white;
+    text-decoration: none;
+    
+}
