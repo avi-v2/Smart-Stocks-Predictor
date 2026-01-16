@@ -216,10 +216,13 @@ const companyMap = {
   AAPL: "AAPL",
   TSLA: "TSLA",
   MSFT: "MSFT",
-  AMZN: "AMZN"
+  NVDA: "NVDA",
+  AMZN: "AMZN",
+  BLK:"BLK,"
 };
 
 function loadNews() {
+    document.getElementById("newsbox").style.display = "block";
   const input = document.getElementById("stockname").value;
   const symbol = companyMap[input];
 
@@ -242,8 +245,9 @@ function loadNews() {
       data.slice(0, 5).forEach(n => {
         const div = document.createElement("div");
         div.className = "news-item";
-        div.innerHTML = `
-          <a href="${n.url}" target="_blank">${n.headline}</a>
+        div.innerHTML = `<ul>
+          <li><a href="${n.url}" target="_blank">${n.headline}</a></li>
+          </ul>
         `;
         newsDiv.appendChild(div);
       });

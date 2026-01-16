@@ -384,7 +384,8 @@ footer>div{
 
 #newsbox{
     margin:50px;
-    height: 400px;
+    height: fit-content;
+    min-height: 300px;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
@@ -397,6 +398,7 @@ footer>div{
     animation: appear linear;
     animation-timeline: view();
     animation-range: entry 0;
+    display: none;
 }
 
 #newshead{
@@ -404,12 +406,22 @@ footer>div{
     font-weight: 700;
     text-align: center;
     border-bottom: 1px solid #1e2733;
-    padding-bottom: 7px;
+    padding-bottom: 28px;
     font-size: 1.2em;
+    margin-bottom: 5px;
+    color:#94A3B8
 }
 
 .newsitem a{
-    color:white;
+    color:#e2eff0;
     text-decoration: none;
+    border-bottom: #1f2937 1px solid;
+    display: block;
     
+}
+#news {
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    font-size: 1.1em;
 }
