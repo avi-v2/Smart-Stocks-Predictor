@@ -35,15 +35,22 @@ window.priceChart = new Chart(ctx, {
         }]
     },
     options: {
+        interaction:{
+            mode:"index",
+        intersect:false,
+        },
         responsive: true,
         plugins: {
+            tooltip:{enabled:true},
             legend: { display: true }
         },
         scales: {
             y: { beginAtZero: false }
-        }
+        },
+        hover: { mode: "index", intersect: false }
+}
     }
-});
+);
 
 
 
