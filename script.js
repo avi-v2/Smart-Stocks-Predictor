@@ -182,3 +182,15 @@ function display(){
     let chart=document.getElementById("dash")
     chart.style.display="block"
 }
+
+const btn = document.getElementById("predictbutton");
+
+btn.addEventListener("click", () => {
+  btn.classList.add("loading");
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove("loading");
+    btn.disabled = false;
+  }, 3000);
+});

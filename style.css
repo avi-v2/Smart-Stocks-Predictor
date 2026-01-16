@@ -85,7 +85,8 @@ header {
     background: linear-gradient(90deg, rgb(9, 9, 248), rgb(139, 129, 230));
     transition: box-shadow 100ms;
     transition: transform 100ms ease-out;
-
+    overflow: hidden;
+    position: relative;
 }
 
 #predictbutton:hover {
@@ -353,4 +354,24 @@ footer{
 footer>div{
     margin-top: 40px;
     height: 80px;
+}
+
+#predictbutton.loading::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.08)
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.2s infinite linear;
+}
+
+@keyframes shimmer{
+  100%{
+    transform: translateX(100%);
+  }
 }
