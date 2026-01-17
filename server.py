@@ -79,7 +79,7 @@ def predict(symbol: str):
     }
 
 
-# ✅ HARDCODED KEY (ONLY FOR TESTING)
+
 ONDEMAND_API_KEY = "Tt7U3BN8wFOPT0GC4pbNsjlqPOfLMHII"
 
 ONDEMAND_URL = "https://api.on-demand.io/chat/v1/sessions/query"

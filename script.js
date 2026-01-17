@@ -101,10 +101,10 @@ document.addEventListener("click", (e) => {
 });
 
 async function predict() {
-  let sym = document.getElementById("stockname").value.trim().toUpperCase();
+  let sym = document.getElementById("stockname").value.trim().toUpperCase().split(" - ")[0];
 
-  await loadStockCSV(sym);   // ✅ history
-  await loadLiveOnce(sym);   // ✅ latest live point added
+
+  await loadStockCSV(sym);
   loadNews();
 
   fetch(`http://127.0.0.1:8000/predict/${sym}`)
@@ -156,7 +156,11 @@ async function loadStockCSV(sym) {
         const headers = rows[0].split(",").map(h => h.trim());
 
         const dateIdx = headers.indexOf("Date");
-        const closeIdx = headers.indexOf("Close Price");
+        const closeIdx =
+  headers.indexOf("Close Price") !== -1
+    ? headers.indexOf("Close Price")
+    : headers.indexOf("Close");
+
 
         if (dateIdx === -1 || closeIdx === -1) {
             throw new Error("CSV must contain Date and Close columns");
@@ -265,37 +269,34 @@ function loadNews() {
     });
 }
 
-async function loadLiveOnce(sym) {
-  try {
-    const res = await fetch(
-      `https://finnhub.io/api/v1/quote?symbol=${sym}&token=${apiKey}`
-    );
-    const data = await res.json();
+// async function loadLiveOnce(sym) {
+//   try {
+//     const res = await fetch(
+//       `https://finnhub.io/api/v1/quote?symbol=${sym}&token=${apiKey}`
+//     );
+//     const data = await res.json();
 
-    const livePrice = data.c;
-    if (!livePrice) throw new Error("No live price");
+//     const livePrice = data.c;
+//     if (!livePrice) throw new Error("No live price");
 
-    // add live point to existing history
-    const now = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
+//     // add live point to existing history
+//     const now = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
 
-    window.priceChart.data.labels.push(now);
-    window.priceChart.data.datasets[0].data.push(livePrice);
+//     window.priceChart.data.labels.push(now);
+//     window.priceChart.data.datasets[0].data.push(livePrice);
 
-    // keep last 30 points
-    if (window.priceChart.data.labels.length > 30) {
-      window.priceChart.data.labels.shift();
-      window.priceChart.data.datasets[0].data.shift();
-    }
+//     // keep last 30 points
+//     if (window.priceChart.data.labels.length > 30) {
+//       window.priceChart.data.labels.shift();
+//       window.priceChart.data.datasets[0].data.shift();
+//     }
 
-    window.priceChart.update();
-  } catch (err) {
-    console.log(err);
-  }
-}
+//     window.priceChart.update();
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
-// ==========================
-// Chatbot UI + Backend Proxy Call
-// ==========================
 
 const chatToggle = document.getElementById("chatToggle");
 const chatWindow = document.getElementById("chatWindow");
@@ -365,6 +366,3 @@ chatSend.addEventListener("click", handleSend);
 chatInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") handleSend();
 });
-
-
-

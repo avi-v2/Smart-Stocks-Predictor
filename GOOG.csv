@@ -1,4 +1,4 @@
-Date,Original Test Data,Predicted Prices,Original_Smooth,Predicted_Smooth,Close Price,Close_Smooth
+Date,Original Test Data,Predicted Prices,Original_Smooth,Predicted_Smooth,Close,Close_Smooth
 2021-08-24,141.3384246826172,140.08994,,,141.3384246826172,
 2021-08-25,141.8858184814453,140.4487,,,141.8858184814453,
 2021-08-26,141.06500244140625,140.91245,,,141.06500244140625,
