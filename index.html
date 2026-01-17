@@ -42,7 +42,7 @@
                 <ul id="suggestions" class="suggestions hidden"></ul>
             </div>
 
-            <div id="predictbutton" onclick="predict() ;display();loadNews();"><b>Predict</b></div>
+            <div id="predictbutton" onclick="predict() ;display();"><b>Predict</b></div>
 
         </div>
         <div class="pop">
@@ -71,7 +71,10 @@
     </section><br>
     <section id="dash">
         <div id="chartbox">
-            <canvas id="pricechart"></canvas>
+            <canvas id="pricechart"><p id="chartError" style="display:none; margin-top:8px; opacity:0.8;">
+  Chart unavailable.
+</p>
+</canvas>
         </div>
 
 
